@@ -1,50 +1,102 @@
-<<<<<<< HEAD
-# kaiburr-task3-webui
-=======
-# Getting Started with Create React App
+# Kaiburr Task 3 – Web UI Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project implements a responsive web interface for the backend developed in **Task 1 (Java + Spring Boot)** and **Task 2 (Kubernetes)**.  
+It enables users to **create, view, search, delete, and run shell-command tasks**, displaying execution output in real time.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🧩 Tech Stack
+- **React 19** (with TypeScript)  
+- **Ant Design 5** for UI components  
+- **Axios** for API requests  
+- **Spring Boot Backend** running on `http://localhost:8080/api`  
+- **Node.js 18 or higher**
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ⚙️ Setup Instructions
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 1️.Clone the Repository
+```bash
+git clone https://github.com/ShasiChowdam/kaiburr-task3-webui.git
+cd kaiburr-task3-webui/task-ui
+2️.Install Dependencies
+bash
+Copy code
+npm install
+3️.Start the Backend (Spring Boot)
+In a separate terminal, run from your backend directory (Task 2 project):
 
-### `npm test`
+bash
+Copy code
+mvn spring-boot:run
+This starts the backend on port 8080.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4.Start the Frontend
+bash
+Copy code
+npm start
+The React app runs at http://localhost:3000
+Make sure the backend is already running before opening the UI.
 
-### `npm run build`
+Features
+Create Task – Add a new task by providing name, owner, and command.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+View All Tasks – Displays existing tasks from the backend.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Search Tasks – Find tasks by name.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Delete Task – Removes a task from MongoDB via backend API.
 
-### `npm run eject`
+Run Command – Executes the task command in a Kubernetes pod or locally and shows output inline.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+View Execution Output – Displays the latest command output in a modal dialog.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Project Structure
+pgsql
+Copy code
+task-ui/
+ ├── public/
+ ├── src/
+ │    ├── components/
+ │    │    ├── TaskForm.tsx
+ │    │    ├── TaskTable.tsx
+ │    │    └── OutputModal.tsx
+ │    ├── App.tsx
+ │    ├── index.tsx
+ │    └── styles/
+ ├── package.json
+ ├── tsconfig.json
+ ├── README.md
+ └── screenshots/
+API Endpoints (Backend)
+Method	Endpoint	Description
+GET	/api/tasks	Fetch all tasks
+GET	/api/tasks/find?name=	Search tasks by name
+PUT	/api/tasks	Create or update a task
+DELETE	/api/tasks/{id}	Delete a task
+PUT	/api/tasks/{id}/execution	Execute task command
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Outputs and Screenshots
+All screenshots demonstrating the UI and API interactions are available inside the screenshots/ folder:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+CreateTask.png – Creating a new task
 
-## Learn More
+TaskTable.png – Viewing all tasks
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+SearchTask.png – Searching for a task
 
-To learn React, check out the [React documentation](https://reactjs.org/).
->>>>>>> de96b61 (Initialize project using Create React App)
+RunCommand.png – Executing a command and showing output
+
+How to Build for Production
+bash
+Copy code
+npm run build
+This creates an optimized production bundle in the build/ directory.
+
+To serve the built files locally:
+
+bash
+Copy code
+npm install -g serve
+serve -s build
