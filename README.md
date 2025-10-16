@@ -17,7 +17,6 @@ It enables users to **create, view, search, delete, and run shell-command tasks*
 ## ⚙️ Setup Instructions
 
 ### 1️.Clone the Repository
-```bash
 git clone https://github.com/ShasiChowdam/kaiburr-task3-webui.git
 cd kaiburr-task3-webui/task-ui
 2️.Install Dependencies
